@@ -1,0 +1,135 @@
+\thispagestyle{empty}
+{\centering
+{\onehalfspacing
+\newgeometry{inner=\innersidemargin,outer=\outersidemargin,top=\topsidemargin,bottom=\bottomsidemargin}
+\ifsubject
+    {
+    \@graphic\\
+    }\\ 
+\else
+    {
+    \@graphic\\
+    } 
+\fi
+
+\vspace{\biggap}
+{\Large{DOCTORAL THESIS}}\\
+
+\textbf
+    {
+    \vspace{\biggap}\\
+    {\Large\@title}\\
+    \vspace{\smallgap}
+    }
+\@author\\
+\vspace{\biggap}
+
+\@date\\
+\vspace{\smallgap} 
+
+\ifschool
+    {
+    \noindent\@school\\
+    }
+\else
+    {
+    }
+\fi
+\vspace{\smallgap}
+
+\ifhorizontal
+    {
+    \ifcosupervisor
+        {
+        \begin{tabular}{cc}
+        \ifmultiplesupervisors 
+            {
+            Supervisors:
+            } 
+        \else 
+            {
+            Supervisor: 
+            }
+        \fi
+        &
+        \ifmultiplecosupervisors 
+            {
+            Co-supervisors:
+            } 
+        \else 
+            {
+            Co-supervisor: 
+            }\\
+        \fi
+        \@supervisor
+        &
+        \@cosupervisor
+        \end{tabular}
+        }\\
+    \else 
+        {
+        \ifnosupervisor
+            { 
+            } 
+        \else
+            {
+            \ifmultiplesupervisors 
+                {
+                Supervisors:\\ \@supervisor
+                }\\ 
+            \else
+                {
+                Supervisor:\\ \@supervisor
+                }\\ 
+            \fi
+            } 
+        \fi
+        }
+    \fi
+    }
+\else
+    {
+    \ifnosupervisor
+        { 
+        } 
+    \else
+        {
+        \ifmultiplesupervisors 
+            {
+            Supervisors:\\ \@supervisor\\
+            } 
+        \else
+            {
+            Supervisor:\\ \@supervisor\\
+            } 
+        \fi
+        } 
+    \fi
+    \ifcosupervisor
+        {
+        \ifmultiplecosupervisors 
+            {
+            Co-supervisors:\\ \@cosupervisor\\
+            }
+        \else
+            {
+            Co-supervisor:\\ \@cosupervisor\\
+            }
+        \fi
+        }
+    \else
+        {
+        } 
+    \fi
+    }
+\fi
+
+\vspace{\smallgap}
+%\textit{
+\@requirement \@degree\\
+%}\\
+
+\restoregeometry       
+\clearpage{\pagestyle{empty}\cleardoublepage}
+}
+}

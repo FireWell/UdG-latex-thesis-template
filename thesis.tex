@@ -1,0 +1,255 @@
+%% Phd Thesis Template
+%% 
+%% Based  on the template of University of Wollongong
+%%   2014-01-08, Thomas Griffiths, tmg994(at)uowmail.edu.au
+%% Modified by 
+%%   2014, Miguel Hernando Camelo
+%%   2015, Ferney Maldonado, Jaime Chavarriaga
+
+%% Preamble
+%% ========
+
+\documentclass[12pt,oneside]{book}
+\input{thesispreamble} 
+
+%% Packages
+%% ========
+
+\usepackage{pdfpages}       % allows pdf inclusion
+\usepackage{epstopdf}        % used to accept eps format images. 
+
+\usepackage{amsfonts}		% includes math fonts
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathptmx}       % sets Times Roman as basic font
+\usepackage{helvet}         % sets Helvetica as sans-serif font
+\usepackage{courier}        % sets Courier as typewriter font
+\usepackage{type1cm}        % for font management
+
+\usepackage{makeidx}		% allows index generation
+\usepackage{graphicx}		% standard LaTeX graphics tool
+
+% two-column index, acronym lists
+\usepackage{multicol, multirow, rotating,bigstrut, booktabs}
+\usepackage[section]{placeins}
+\usepackage[printonlyused,nohyperlinks,smaller]{acronym}
+
+% special environments
+\usepackage{algorithm, algorithmic}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{relsize}
+%\usepackage{subcaption}
+%\usepackage[compact]{titlesec}
+\newtheorem{def1}{Definition}[chapter]
+\newtheorem{theo1}{Theorem}[chapter]
+\newtheorem{prop1}{Proposition}[chapter]
+\newtheorem{coro1}{Corollary}[chapter]
+\newtheorem{lemma1}{Lemma}[chapter]
+
+% Biblatex package
+\usepackage[backend=bibtex,maxnames=4, style=numeric-comp, sorting=none, clearlang=true, sortcites=true, doi=false, url=false, firstinits]{biblatex}
+
+\usepackage[pagewise]{lineno}
+\usepackage[catalan,spanish,english]{babel}
+\usepackage{csquotes}
+
+\usepackage[PhD]{udgthesistitlepage}	% PhD style from UoW
+\hyphenation{bet-ween}					% Hyphenation
+\usepackage[none]{hyphenat}
+\usepackage{array}						% enhanced support for tables
+
+
+%% Special Settings
+%% ================
+
+\preto\chapter\acresetall		% add space after a chapter in the TOC
+\def\acts{\curvearrowright}		% use "curvearrow" for group operator
+ 
+% new column types
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Special caption for figures that includes the source
+\newcommand*{\captionsource}[2]{%
+  \caption[{#1}]{%
+    #1%
+    \\\hspace{\linewidth}%
+    \textbf{Source:} #2%
+  }%
+}
+
+%% BibTex files 
+%% ============
+%% include here your bibtext files
+\addbibresource{your_bibliography.bib}
+\addbibresource{own_publications.bib}
+ 
+
+%% Main document configuration
+%% ===========================
+
+\begin{document}
+    \sloppy				% (try to) prevent overfull boxes
+    \onehalfspace		% 1.5 spacing
+    %\doublespacing		% double spacing
+
+
+%% Title page information
+%% ======================
+%% NOTE: see the uowthesistitlepage package.
+    %\class{}
+
+    \title{A PRETTY GOOD TITLE} 
+    % Author: Full name, and any degrees held.
+    \author{Adri\`a Piqu\'e}
+	% Date: Year, alternatively use the \today macro for Month dd, yyyy.
+    \date{2014} 
+    % Degree: Write it in full: e.g. Bachelor of Science Medicinal Chemistry Honours
+    \degree{Doctor of Philosophy by the University of Girona}
+    
+    % Supervisor: in square brackets: (default 1) put the number of supervisors. 
+    % In the Curly braces, list your supervisor(s) seperated by commas.    
+    \supervisor[2]{Ph.D. Llu\'is Vil\`a and Ph.D. Andreu Vil\`a}     
+    % CoSupervisor: the same as the supervisor
+    %\cosupervisor[1]{Dr. C. O. Supervisor}
+
+    % School    
+    \school{DOCTORAL PROGRAM IN TECHNOLOGY} 
+
+
+%% Cover
+%% =====
+    %\cleardoublepage
+    %\include{frontmatter/cover}
+
+%% Front Matter
+%% ============
+    \makecover
+    \maketitle
+    %\frontmatter    
+    %\linenumbers
+
+%% Certificate
+%% ===========
+    \frontmatter    
+    \cleardoublepage
+    \input{frontmatter/cert.tex}
+    \setcounter{page}{3}
+    
+%% Acknowledgments
+%% ===============    
+    \cleardoublepage
+    \phantomsection
+    \input{frontmatter/acknowledgments}
+    \cleardoublepage\null\newpage
+
+%% Table of contents
+%% =================
+    
+%% List of acronyms
+    \cleardoublepage
+    \phantomsection
+    \input{frontmatter/common_acronyms.tex}
+
+%% List of Tables
+    \cleardoublepage
+    \phantomsection
+    \label{listoftables}\addcontentsline{toc}{chapter}{List of Tables} 
+    \listoftables
+    
+%% List of Figures    
+    \cleardoublepage
+    \phantomsection
+    \label{listoffigures}\addcontentsline{toc}{chapter}{List of Figures}
+    \listoffigures
+
+%% List of Publications
+    \cleardoublepage
+    \include{frontmatter/publications}
+    
+%% Table of Content
+    \pdfbookmark[0]{Contents}{Contents} 
+    \setcounter{tocdepth}{2}
+    \setcounter{secnumdepth}{3}
+    \tableofcontents
+    \markboth{Index}{}
+    
+% NOTE: These \phantomsection are to ensure that the hyperref package 
+%       hyperlinks to the correct page in the electronic pdf. 
+%       If you turn hyperref off they don't do anything.
+
+
+%% Abstracts
+%% =========
+
+% in English
+    \phantomsection	
+    \cleardoublepage
+    \input{frontmatter/abstract}
+    
+% in Spanish    
+    \phantomsection	
+    \cleardoublepage
+    \input{frontmatter/resume}
+    
+% in Catalan
+    \phantomsection	
+    \cleardoublepage
+    \input{frontmatter/resum}
+    \mainmatter
+    
+%% Chapters
+%% ========    
+    \phantomsection	
+    \cleardoublepage
+    \input{chapters/chap1}
+    \input{chapters/chap2}
+    \input{chapters/chap3}
+    \input{chapters/chap4}
+    \input{chapters/chap5}
+
+% NOTE: The chapters can be included using \input or \include
+% \include creates an aux file for the included file, \input does not. 
+% \include is good for large files, like a chapter, since LaTeX won't re-compile 
+% the file if no changes have been made. \input is better for small inputs like 
+% data tables. Additionally you *CAN* nest \input commands. 
+% You *CANNOT* nest \include commands.
+
+
+%% Bibliography
+%% ============
+    \cleardoublepage
+    \phantomsection	
+    \addcontentsline{toc}{chapter}{Bibliography}    
+    \printbibliography
+
+%% Appendices
+%% ==========
+    \cleardoublepage
+    \appendix
+    \include{appendices/appendix1}
+    \include{appendices/appendix2}
+    
+\end{document}  
+
+%% ----------------------------------------------------------
+
+%% Notes and Examples
+%% ==================
+
+%% Figure or Scheme (caption after)
+
+% \begin{figure}
+% \centering
+% \input{figures/name_of_figure.tex}
+% \caption[Short caption for table of figures]{Long caption for text body}
+% \end{figure}
+
+%% Table (caption before)
+
+% \begin{table}
+% \centering
+% \caption[Short caption for table of tables]{Long caption for text body}
+% \input{figures/name_of_figure.tex}
+% \end{table}
+
