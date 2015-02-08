@@ -10,54 +10,38 @@
 %% ========
 
 \documentclass[12pt,oneside]{book}
-\input{thesispreamble} 
+\input{udg-thesispreamble} 
 
-%% Packages
-%% ========
-
-\usepackage{pdfpages}       % allows pdf inclusion
-\usepackage{epstopdf}        % used to accept eps format images. 
-
-\usepackage{amsfonts}		% includes math fonts
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{mathptmx}       % sets Times Roman as basic font
-\usepackage{helvet}         % sets Helvetica as sans-serif font
-\usepackage{courier}        % sets Courier as typewriter font
-\usepackage{type1cm}        % for font management
+%% Packages (not in the preamble)
+%% ==============================
 
 \usepackage{makeidx}		% allows index generation
-\usepackage{graphicx}		% standard LaTeX graphics tool
 
 % two-column index, acronym lists
-\usepackage{multicol, multirow, rotating,bigstrut, booktabs}
+\usepackage{multicol, multirow, rotating, bigstrut}
 \usepackage[section]{placeins}
 \usepackage[printonlyused,nohyperlinks,smaller]{acronym}
 
 % special environments
 \usepackage{algorithm, algorithmic}
-\usepackage{caption}
-\usepackage{subfigure}
 \usepackage{relsize}
-%\usepackage{subcaption}
-%\usepackage[compact]{titlesec}
+
 \newtheorem{def1}{Definition}[chapter]
 \newtheorem{theo1}{Theorem}[chapter]
 \newtheorem{prop1}{Proposition}[chapter]
 \newtheorem{coro1}{Corollary}[chapter]
 \newtheorem{lemma1}{Lemma}[chapter]
 
-% Biblatex package
-\usepackage[backend=bibtex,maxnames=4, style=numeric-comp, sorting=none, clearlang=true, sortcites=true, doi=false, url=false, firstinits]{biblatex}
-
 \usepackage[pagewise]{lineno}
 \usepackage[catalan,spanish,english]{babel}
 \usepackage{csquotes}
 
-\usepackage[PhD]{udgthesistitlepage}	% PhD style from UoW
+\usepackage[PhD]{udg-thesistitlepage}	% PhD style from UdG
+
 \hyphenation{bet-ween}					% Hyphenation
 \usepackage[none]{hyphenat}
-\usepackage{array}						% enhanced support for tables
 
+\usepackage{ifthen}
 
 %% Special Settings
 %% ================
@@ -65,18 +49,6 @@
 \preto\chapter\acresetall		% add space after a chapter in the TOC
 \def\acts{\curvearrowright}		% use "curvearrow" for group operator
  
-% new column types
-\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
-\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
-
-% Special caption for figures that includes the source
-\newcommand*{\captionsource}[2]{%
-  \caption[{#1}]{%
-    #1%
-    \\\hspace{\linewidth}%
-    \textbf{Source:} #2%
-  }%
-}
 
 %% BibTex files 
 %% ============

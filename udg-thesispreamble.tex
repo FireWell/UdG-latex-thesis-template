@@ -1,0 +1,157 @@
+%% This is the `thesispreamble.tex' file,
+
+%% Phd Thesis Template
+%% ===================
+%% 
+%% Based  on the template of University of Wollongong
+%%   2013-07-16, Thomas Griffiths, tmg994(at)uowmail.edu.au
+%% Modified by 
+%%   2014, Miguel Hernando Camelo
+%%   2015, Ferney Maldonado, Jaime Chavarriaga
+
+%----------------------------------------------------------------------------%
+% I encourage you to read the documentation for each of the packages below,  %
+% they contain instructions for implementation and examples of their use.    %
+% If you get stuck read my comments, hopefully they can help you find where  %
+% your answers will be. I highly reccomend making friends with Mr. Google,   %
+% he knows quite a bit. The wikibook on LaTeX is also very helpful:          %
+% http://en.wikibooks.org/wiki/LaTeX/                                        %
+% The packages I've loaded here are the bare basics. and mainly deal with    %
+% formatting, captions and things. There are thousands of packages out there %
+% for all the disciplines and formatting you might need. Google what you're  %
+% looking for and the keywords 'LaTeX' and 'package', You'll probably find   %
+% what you're looking for. I encourage you to look on ctan, www.ctan.org,    %
+% for packages that might be relevant to your degree. If you're in science I % 
+% can recomend the siunitx and the chemmachro (or mhchem) package. They make %
+% it really easy to typeset chemical equations, any quantity with units and  %
+% scientific notation.                                                       %
+%                                                                            %
+%----------------------------------------------------------------------------%
+
+%% Page size
+%% =========
+
+\usepackage{geometry}
+	\geometry{a4paper,inner=3cm, outer=3cm, top=3cm, bottom=3cm}
+	% Dimensions from UOW thesis guidelines.
+	\pdfpagewidth=\paperwidth 
+	\pdfpageheight=\paperheight
+
+%% Paragraph beginning 
+%% ===================
+%% -- use only one of them
+
+%\usepackage[parfill]{parskip}		% begin paragraphs with an empty (return) line 
+\setlength{\parindent}{4ex}			% sets the length of the paragraph indent.
+	
+\usepackage{setspace}				% Double or one and a half spacing.
+
+%% Graphic Support
+%% ===============
+
+% use color names 
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+	
+\usepackage{graphicx}				% standard LaTeX graphics tool
+	\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{subfigure}				% Multiples subfigures in a figure
+
+%\usepackage[position=top,singlelinecheck=false,captionskip=4pt]{subfig}
+
+\usepackage{pdfpages}       		% allows pdf inclusion
+\usepackage{epstopdf}       		% used to accept eps format images. 
+
+\usepackage{wrapfig} 				% Wrap texts around the figures
+
+
+%% Tables, figures and captions
+%% ============================
+
+% Makes bold labeled and smaller font captions.
+% Must be loaded before the longtable package to avoid conflicts!
+\usepackage[font={small},labelfont={bf},margin=4ex]{caption}
+  
+% Long tables (more than one page). 
+% Different headers and footers for beginning and end pages, etc.
+\usepackage{longtable} 
+% Make a longtable start on the next clear page
+\usepackage{afterpage} 
+
+% Nice looking tables and lines in tables
+\usepackage{booktabs} 
+% Entries in tables over multiple rows
+\usepackage{multirow} 
+
+\usepackage{array}						% enhanced support for tables
+
+
+%% Landscape support
+%% =================
+
+\usepackage{lscape}				% Pages in landscape 
+\usepackage{pdflscape} 			% Landscape pages also rotated in the pdf
+
+
+%% Special symbols and fonts
+%% =========================
+
+\usepackage{amsfonts}				% includes math fonts
+\usepackage{amsmath,amssymb,amsthm}	% Maths symbols		
+\usepackage{mathptmx}       		% sets Times Roman as basic font
+\usepackage{helvet}         		% sets Helvetica as sans-serif font
+\usepackage{courier}        		% sets Courier as typewriter font
+\usepackage{type1cm}        		% for font management
+
+%% Document sections, headers and footers
+%% ======================================
+
+\usepackage[bottom]{footmisc}		% footnotes at page bottom
+\usepackage{fancyhdr}				% for creating headers and footers
+
+%% Bibliography
+%% ============
+
+\usepackage[backend=bibtex,maxnames=4, style=numeric-comp, sorting=none, clearlang=true, sortcites=true, doi=false, url=false, firstinits]{biblatex}
+
+%\usepackage[backend=biber,articletitle=true,style=chem-rsc,doi=false]{biblatex}
+%\usepackage[backend=biber,style=numeric-comp, sorting=none, clearlang=true, sortcites=true, doi=false, url=false]{biblatex}
+ 
+% Backends:
+% - bitext is the standard manager (it works on ShareLatex)
+% - biber copes with unicode and so can deal with accented characters easily.
+
+% clickable links in the PDF
+\usepackage[unicode=true,colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black,breaklinks=true]{hyperref}
+
+
+%% Command renewals, New commands etc.
+%% ===================================
+
+% Use letters for footnotes instead of numbers (avoid confusion with references).
+\renewcommand{\thefootnote}{\alph{footnote}}							
+
+% new column types
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+% Special caption for figures that includes the source
+% Usage:
+%   \captionsource{Caption}{source}
+%	\captionsource[Caption-in-TOC]{Caption}{source}
+\newcommand*{\captionsource}[3][]{%
+  \ifthenelse{\equal{#1}{}}%
+  {%
+  	\caption[{#2}]{%
+    	#2%
+    	\\\hspace{\linewidth}%
+    	\textbf{Source:} #3%
+	}%
+  }{%
+  	\caption[{#1}]{%
+    	#2%
+    	\\\hspace{\linewidth}%
+    	\textbf{Source:} #3%
+	}%
+  }%
+}
+
