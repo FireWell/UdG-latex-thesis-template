@@ -4,3 +4,11 @@
 /tempPartial00000.tex
 /tempPartial00000.pdf
 /tempPartial00000.synctex.gz
+/*.bbl
+/*.blg
+/*.aux
+/*.log
+/*.lof
+/*.lot
+/*.toc
+/*.out
